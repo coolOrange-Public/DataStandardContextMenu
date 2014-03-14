@@ -1,0 +1,81 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="MainWindow">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        	<Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#F0F0F0" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Copy to clipboard" Command="{Binding PsCmd[CopyToClipboard]}">
+                    <MenuItem.Icon>
+                        <Image Source="C:\ProgramData\Autodesk\Vault 2014\Extensions\DataStandard\Vault\cO.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save to CSV" Command="{Binding PsCmd[SaveToCSV]}"/>
+            </ContextMenu>
+        </ScrollViewer.ContextMenu>
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="25" Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="280" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Category" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Prop[Category Name].Value}" Name="Cat" Grid.Row="0" Grid.Column="1" ></TextBox>
+                <Label Content="Template" Grid.Row="1" Grid.Column="0" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="[Assigned]" />
+                <Label Grid.Row="2" Content="Number Scheme" Grid.Column="0" />
+                <TextBox Grid.Row="2" Text="[Assigned]" Grid.Column="1" Name="NumSchms" ></TextBox>
+                <Label Content="Title" Grid.Column="0" Grid.Row="3" />
+                <TextBox Text="{Binding Prop[Title].Value}" Grid.Column="1" Grid.Row="3">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Copy to clipboard" Command="{Binding PsCmd[CopyTitleToClipboard]}">
+                                <MenuItem.Icon>
+                                    <Image Source="C:\ProgramData\Autodesk\Vault 2014\Extensions\DataStandard\Vault\cO.ico"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <Label Content="Description" Grid.Column="0" Grid.Row="4" />
+                <TextBox Text="{Binding Prop[Description].Value}" Grid.Column="1" Grid.Row="4" Name="Description" MinHeight="50" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <Label Content="State" Grid.Column="0" Grid.Row="5" />
+                <TextBox Text="{Binding Prop[State].Value}" Grid.Column="1" Grid.Row="5" />
+                <Label Content="Path" Grid.Column="0" Grid.Row="6" />
+                <TextBox Text="{Binding Prop[_FilePath].Value}" Grid.Column="1" Grid.Row="6" />
+                <Label Grid.Row="7" Content="File Name" Grid.Column="0" />
+                <TextBox Grid.Row="7" Text="{Binding Prop[File Name].Value}" Grid.Column="1" Name="FILENAME" />
+                <Label Content="Comments" Grid.Row="8" />
+                <TextBox Grid.Row="8" Text="{Binding Prop[Comments].Value}" Grid.Column="1" MinHeight="50" TextWrapping="Wrap" AcceptsReturn="True" />
+            </Grid>
+            <Grid Column="1" Margin="25">
+                <Border BorderBrush="White" BorderThickness="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Image VerticalAlignment="Center" Width="120"  Source="{Binding Prop[Thumbnail].Value}"></Image>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
